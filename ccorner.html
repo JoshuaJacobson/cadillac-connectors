@@ -1,0 +1,159 @@
+<html>
+
+<head>
+	<!--Info displayed in the tab above. Also Links to the stylesheet that makes everything pretty. the id="" Links each element.-->
+	<title>Cadillac Connectors - 5086</title>
+	<link rel="SHORTCUT ICON" href="Images/Icon.ico" />
+	<link rel="STYLESHEET" href="CSS.css" />
+	<script src="scripts.js"></script>
+</head>
+	
+<body id="body">
+	
+	<div id="DivBan">
+		<!--This is the Gray banner image, displayed at the top of each page.-->
+		<img src="Images/icon.ico" class="Albert"/> 		
+		<img src="Images/Bannerb.png" id="Banner" /> 		
+		<img src="Images/icon.ico" class="Albert"/>
+	</div>
+	
+	<div id="Full">
+		<!--The Full divider is there so that the footer will be forced to the bottom of the page.-->
+		<div id="LeftMargin">
+			<!--The left margin cointains links to most items on the site, however, some are located only in the foter.-->
+			<h3 id="LinkNavigator">Useful Links</h3>
+			<hr id="LinkBreak" />
+			<ul id="LinkBar"><li><a href="index.html">Home</a></li></ul>
+			<hr id="LinkBreak" />
+			<ul id="LinkBar"><li><a href="AboutUs.html">About Us</a></li></ul>
+			<hr id="LinkBreak" />
+			<ul id="LinkBar"><li><a href="Sponsors.html">Sponsors</a></li></ul>
+			<hr id="LinkBreak" />
+			<ul id="LinkBar"><li><a href="OurTeam.html">This Year's Team</a></li></ul>
+			<hr id="LinkBreak" />
+			<ul id="LinkBar"><li><a href="FIRSTinfo.html">FIRST</a></li></ul>
+			<hr id="LinkBreak" />
+			<ul id="LinkBar"><li><a href="ccorner.html">Coder's Corner</a></li></ul>
+			<!--<hr id="LinkBreak" />
+			<ul id="LinkBar"><li><a href="quotes.html">Team Quotes</a></li></ul>-->
+		</div>
+		
+		
+	
+		<div id="RightMargin">
+			<!--The divider only activates if there is an element inside.-->
+			<a class="twitter-timeline" href="https://twitter.com/Team5086" data-widget-id="687387060458668032">Tweets by @Team5086</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		</div>
+		
+		<!--This contains unique content to each page of the site.-->
+		<div id="MainContent">
+			
+			<h1>Welcome To Josh's Code Corner</h1>
+			<h3>Here I will give you any cool tips I know about programming</h3>
+			<p>
+				Here is the code for our robot, Centurion.
+				<br />
+				<a href="https://github.com/CadillacConnectors/Centurion.git" >GitHub link</a>
+				<br />
+				One of my favorite features of this year's robot is Automatic Tread Recalculation. This system checks the 
+				value of the current going to the motors and course-tunes the speeds sent to keep the bot going streight, 
+				and fine-tunes it more if it needs. Here is the code I have in the Drive Subsystem.
+				</p><p style="text-align:left">
+				<code>
+					<span style="color:red">public void calculateReduction() {</span><br />
+    	<span style="color:white">//Make sure The Robot is not turning</span><br />
+    	<span style="color:blue">if ( <span style="color:purple">RobotMap</span>.turning = false) {</span><br />
+    		<span style="color:white">//Get the speed of the motors</span><br />
+    		double  <span style="color:green">leftSpeed</span> = this.getLeft();<br />
+    		double  <span style="color:green">rightSpeed</span> = this.getRight();<br />
+    		<br />
+    		<span style="color:white">//Add speed if they are both less than 99%</span><br />
+    		if (( <span style="color:green">leftSpeed</span> < .99) && ( <span style="color:green">rightSpeed</span> < .99)) {<br />
+    			 <span style="color:purple">RobotMap</span>.<span style="color:pink">leftDecrease</span>= <span style="color:purple">RobotMap</span>.<span style="color:pink">leftDecrease</span>+.01;<br />
+    			 <span style="color:purple">RobotMap</span>.<span style="color:yellow">rightDecrease</span>= <span style="color:purple">RobotMap</span>.<span style="color:yellow">rightDecrease</span>+.01;<br />
+    		}<br />
+    		<br />
+    		<span style="color:white">//Corse tuning to 1% speed if left is faster</span><br />
+    		if (( <span style="color:green">leftSpeed</span> -  <span style="color:green">rightSpeed</span>) > .01) {<br />
+    			<br />
+    			<span style="color:white">//Decrease left if right is already max</span><br />
+    			if ( <span style="color:purple">RobotMap</span>.<span style="color:yellow">rightDecrease</span> <= .09) {<br />
+        			 <span style="color:purple">RobotMap</span>.<span style="color:pink">leftDecrease</span> =  <span style="color:purple">RobotMap</span>.<span style="color:pink">leftDecrease</span>-.01;<br />
+    			}<br />
+    			<span style="color:white">//Increase Right if it is not</span><br />
+    			else {<br />
+        			 <span style="color:purple">RobotMap</span>.<span style="color:yellow">rightDecrease</span> =  <span style="color:purple">RobotMap</span>.<span style="color:yellow">rightDecrease</span>+.01;<br />
+    			}<br />
+    		}<br />
+<br />
+    		<span style="color:white">//Corse tuning to 1% speed if right is faster</span><br />
+    		if (( <span style="color:green">rightSpeed</span> -  <span style="color:green">leftSpeed</span>) > .01) {<br />
+    			<br />
+    			<span style="color:white">//Decrease right if left is already max</span><br />
+    			if ( <span style="color:purple">RobotMap</span>.<span style="color:pink">leftDecrease</span> <= .09) {<br />
+        			 <span style="color:purple">RobotMap</span>.<span style="color:yellow">rightDecrease</span> =  <span style="color:purple">RobotMap</span>.<span style="color:yellow">rightDecrease</span>-.01;<br />
+    			}<br />
+    			<span style="color:white">//Increase left if it is not.</span><br />
+    			else {<br />
+        			 <span style="color:purple">RobotMap</span>.<span style="color:pink">leftDecrease</span> =  <span style="color:purple">RobotMap</span>.<span style="color:pink">leftDecrease</span>+.01;<br />
+    			}<br />
+    		}<br />
+    		<br />
+    		<span style="color:white">//Fine tuning to .1% if left is faster</span><br />
+    		if (( <span style="color:green">leftSpeed</span> -  <span style="color:green">rightSpeed</span>) > .001) {<br />
+    			<br />
+    			<span style="color:white">//Same as above, just with a smaller speed</span><br />
+    			if ( <span style="color:purple">RobotMap</span>.<span style="color:yellow">rightDecrease</span> == 1) {<br />
+        			 <span style="color:purple">RobotMap</span>.<span style="color:pink">leftDecrease</span> =  <span style="color:purple">RobotMap</span>.<span style="color:pink">leftDecrease</span>-.001;<br />
+    			}<br />
+    			else {<br />
+        			 <span style="color:purple">RobotMap</span>.<span style="color:yellow">rightDecrease</span> =  <span style="color:purple">RobotMap</span>.<span style="color:yellow">rightDecrease</span>+.001;<br />
+    			}<br />
+    		}<br />
+<br />
+    		<span style="color:white">//Fine tuning to .1% if right is faster</span><br />
+    		if (( <span style="color:green">rightSpeed</span> -  <span style="color:green">leftSpeed</span>) > .001) {<br />
+<br />
+    			<span style="color:white">//Same as above, just with a smaller speed</span><br />
+    			if ( <span style="color:purple">RobotMap</span>.<span style="color:pink">leftDecrease</span> == 1) {<br />
+        			 <span style="color:purple">RobotMap</span>.<span style="color:yellow">rightDecrease</span> =  <span style="color:purple">RobotMap</span>.<span style="color:yellow">rightDecrease</span>-.001;<br />
+    			}<br />
+    			else {<br />
+        			 <span style="color:purple">RobotMap</span>.<span style="color:pink">leftDecrease</span> =  <span style="color:purple">RobotMap</span>.<span style="color:pink">leftDecrease</span>+.001;<br />
+    			}<br />
+    		}<br />
+    	<span style="color:blue">}</span><br />
+    <span style="color:red">}</span><br />
+				</code> 
+			</p>
+		</div>
+		
+		
+		
+	</div>
+	
+	<!--This is the footer, it stays at the bottom and has links to many resources.-->
+	<div id="Footer">
+		<table style="text-align:center;width:100%;">
+  			<tr>
+ 			     <td><b>Get to know us</b></td>
+ 			     <td><b>Contact Info</b></td>		
+ 		 	</tr>
+		    <tr>
+  			     <td><a href="http://cadillac-connectors.blogspot.com/">Our old Blog</a></td>
+ 			     <td><a href="AboutUs.html">About Us</a></td>
+ 			</tr>
+  			<tr>
+    			 <td><a href="https://twitter.com/team5086">Twitter</a></td>
+  			     <td><a href="ContactUs.html">Contact Us</a></td>
+  			</tr>
+		</table>
+		<hr id="LineBreak" />
+		<a href="#Top">Back to top of page.</a>
+		<p>&copy;Joshua Jacobson and others 2015. All rights reserved. The Cadillac Connectors logo and all images within are used by permission.</p>
+	</div>
+	
+</body>
+
+</html>
